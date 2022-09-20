@@ -1,0 +1,31 @@
+{% load static %}
+<nav class="flex flex-row items-center justify-center w-full bg-white p-2">
+  <ul class="flex flex-row w-full gap-5 mx-8 justify-center">
+    <li class="self-center">
+      <a href="{% url 'main:inicio' %}"><img class="w-[170px]" src="{% static 'Stack_underflow.png' %}" alt=""></a>
+    </li>
+    <li class="self-center">
+      <a href="">About</a>
+    </li>
+    <li class="self-center">
+      <input type="input" class="border w-[35vw] border-black rounded-sm p-1 focus:outline-indigo-500" placeholder="Buscar">
+    </li>
+    {% if request.user.is_authenticated %}
+    <li class="self-center">
+      <img src="{{avatarUrl}}" alt="user avatar" class="w-10 rounded-full">
+    </li>
+      <li class="self-center px-4 py-2 font-semibold text-sm bg-red-300 text-white rounded-none shadow-sm">
+        <a href="{% url 'accounts:logout' %}">Log out</a>
+      </li>
+    {% else %}
+      <li class="self-center px-4 py-2 font-semibold text-sm bg-sky-300 text-sky-600 rounded-none shadow-sm">
+        <a href="{% url 'accounts:login' %}">Log in</a>
+      </li>
+      <li class="self-center px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-none shadow-sm">
+        <a href="{% url 'accounts:register' %}">Sign up</a>
+      </li>
+    {% endif %}
+  </ul>
+  <p></p>
+</nav>
+<hr>

@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block main %}
+<form class="gap-10" action="{% url 'accounts:register' %}" method="post">
+    {% csrf_token %}
+    
+    {{form.as_p}}
+
+    <div class="flex flex-row items-center justify-around m-10">
+        <button type="submit" class="self-center px-4 py-2 font-semibold text-sm bg-sky-300 text-sky-600 rounded-none shadow-sm">Sign up</button>
+    </div>
+    <hr>
+    <div class="flex flex-row items-center justify-around m-5 gap-5">
+        <p>Ya eres miembro? </p>
+        <a href="{% url 'accounts:login' %}">
+            <button type="button" class="px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-none shadow-sm">Log in</button>
+        </a>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Stack Underflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+    <style>
+      body {
+        font-family: 'Ubuntu', sans-serif;
+        color: grey;
+      }
+    </style>
+  </head>
+  <body class="h-[100vh]">
+    
+    {% include './partials/navbar.html' %}
+
+    {% if message %}
+      <div class="w-full flex flex-row">
+
+          <h4 class="">{{ message }}</h4>
+
+      </div>
+    {% endif %}
+
+    <div class="flex flex-col items-center justify-center w-full min-h-[70%] py-32 px-16">
+        {% block main %}
+        {% endblock %}
+    </div>
+
+    {% include './partials/footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
