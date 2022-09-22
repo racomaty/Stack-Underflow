@@ -15,10 +15,10 @@ def login(request):
                 auth_login(request, user)
                 return redirect('main:inicio')
             else:
-                return render(request, 'accounts/login.html', {'message': 'Usuario o contraseña incorrectos', 'form': form})
+                return render(request, 'accounts/login.html', {'form': form})
         else:
-            return render(request, 'accounts/login.html', {'message': 'Usuario o contraseña incorrectos', 'form': form})
-    if request.user.is_authenticated!=True:
+            return render(request, 'accounts/login.html', {'form': form})
+    elif request.user.is_authenticated!=True:
         form = AuthenticationForm()
         return render(request, 'accounts/login.html', {'form': form})
     else:
@@ -28,13 +28,20 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            reqUser = form.cleaned_data['username']
+            reqPassword = form.cleaned_data['password1']
             form.save()
-            return render(request, 'main/inicio.html', {'message': f'Usuario {username} creado correctamente'})
+            user = authenticate(request, username=reqUser, password=reqPassword)
+            if user is not None:
+                auth_login(request, user)
+                return redirect('main:inicio')
+            else:
+                form.errors.customError = 'Error al registrar usuario'
+                return render(request, 'accounts/register.html', {'formErrors': form.errors.customError})
         else:
-            return render(request, 'accounts/register.html', {'form': form})
+            return render(request, 'accounts/register.html', {'formErrors': form.errors})
     if request.user.is_authenticated!=True:
         form = UserRegistrationForm()
-        return render(request, 'accounts/register.html', {'form': form})
+        return render(request, 'accounts/register.html')
     else:
         return redirect('main:inicio')
