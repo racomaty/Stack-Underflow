@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from accounts.models import Avatar
+import os
+from django.conf import settings
 
 def inicio(request):
     if request.user.id:
@@ -17,4 +19,4 @@ def getAvatar (request):
             print(avList[0].image.url)
             return avList[0].image.url
         else:
-            return 'media/avatars/default.png'
+            return os.path.join(settings.MEDIA_URL, 'avatars/default.png')

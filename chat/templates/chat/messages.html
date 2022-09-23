@@ -1,0 +1,41 @@
+{% extends 'main/layout.html' %}
+
+{% block main %}
+<div class="flex flex-col items-center justify-center w-full h-[70%]">
+    <div class="flex flex-row w-full h-[100%] divide-x">
+        <div class="flex flex-col w-[15vw] h-[100%] ">
+            <div class="flex flex-row items-center justify-center z-10 shadow-xl">
+                <h2 class="p-4 text-xl text-slate-700">Contacts</h2>
+                <a href="{% url 'chat:messages' %}" class="flex flex-col items-center">
+                    <button class="rounded-full hover:bg-slate-200 self-center items-center"><svg xmlns="http://www.w3.org/2000/svg" class="self-center" fill="grey" height="24" width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z"/></svg></button>
+                </a>
+            </div>
+            <hr>
+            <ul>
+                {% for contact in contacts %}
+                <li class="flex flex-row items-center">
+                    <img src="{{contact.avatar}}" alt="contact avatar" class="w-10 h-10 object-cover rounded-full mx-4 my-2">
+                    <a href="{% url 'chat:chat' contact.username %}">{{ contact.username }}</a>
+                </li>
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="flex flex-col w-[85vw] h-full ">
+            {% block chat %}
+            <div class="flex flex-col items-center justify-center w-full h-full">
+                <h3 class="text-xl p-4 text-slate-700 self-center">Start a new conversation</h3>
+                <form action="{% url 'chat:newChat' %}" method="post" class="p-4 self-center">
+                    {% csrf_token %}
+                    <input type="text" name="contact" id="contact" placeholder="Username" class="focus:outline-indigo-500 px-6 w-50 h-10 border">
+                    <button type="submit" class="w-[100px] h-10 bg-blue-500 text-white">Start</button>
+                </form>
+                <p class="text-red-400">{{error}}</p>
+                
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

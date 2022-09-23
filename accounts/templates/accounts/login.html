@@ -1,24 +1,37 @@
 {% extends 'main/layout.html' %}
 
 {% block main %}
-<form class="gap-10 items-center justify-center" action="{% url 'accounts:login' %}" method="post">
-    {% csrf_token %}
-    <div class="flex flex-col gap-4 w-full items-center justify-center">
-        <input required type="name" name="username" placeholder="Username" class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
-        <input required type="password" name="password" placeholder="Password" class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
-    </div>
+<div class="flex flex-col items-center justify-center w-full min-h-[70%] py-32 px-16">
+    <form class="gap-10 items-center justify-center" action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        <div class="flex flex-col gap-4 w-full items-center justify-center">
+            <input required type="name" name="username" placeholder="Username"
+                class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+            <input required type="password" name="password" placeholder="Password"
+                class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+        </div>
+        {% if formErrors %}
+        <div class="flex flex-col gap-4 w-full items-center justify-center">
+            <p class="text-red-500">Username or password incorrect</p>
+        </div>
+        {% endif %}
 
-    <div class="flex flex-row items-center justify-around m-10 gap-5">
-        <button type="submit" class="self-center px-3 w-[75px] h-[33px] font-semibold text-sm bg-sky-200 hover:bg-sky-300 text-sky-500 rounded-sm shadow-sm border border-sky-500">Log in</button>
-        <a href="" class="underline underline-offset-1 text-indigo-700 text-sm">Olvidaste tu contraseña?</a>
-    </div>
-    <hr>
-    <div class="flex flex-row items-center justify-around m-5 gap-5">
-        <p class="text-sm">No eres miembro? </p>
-        <a href="{% url 'accounts:register' %}">
-            <button type="button" class="self-center px-3 w-[75px] h-[33px] font-semibold text-sm bg-sky-500 hover:bg-sky-400 text-white rounded-sm shadow-sm">Sign up</button>
-        </a>
-    </div>
-</form>
+        <div class="flex flex-row items-center justify-around m-10 gap-5">
+            <button type="submit"
+                class="self-center px-3 w-[75px] h-[33px] font-semibold text-sm bg-sky-200 hover:bg-sky-300 text-sky-500 rounded-sm shadow-sm border border-sky-500">Log
+                in</button>
+            <a href="" class="underline underline-offset-1 text-indigo-700 text-sm">Olvidaste tu contraseña?</a>
+        </div>
+        <hr>
+        <div class="flex flex-row items-center justify-around m-5 gap-5">
+            <p class="text-sm">No eres miembro? </p>
+            <a href="{% url 'accounts:register' %}">
+                <button type="button"
+                    class="self-center px-3 w-[75px] h-[33px] font-semibold text-sm bg-sky-500 hover:bg-sky-400 text-white rounded-sm shadow-sm">Sign
+                    up</button>
+            </a>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

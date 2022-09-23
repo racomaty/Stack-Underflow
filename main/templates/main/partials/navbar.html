@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="flex flex-col w-full bg-white h-[50px] justify-between">
+<nav class="flex flex-col w-full bg-white h-[50px] justify-between z-20 shadow-lg">
   <div class="h-[3px] bg-blue-600 w-full"></div>
   <div class="h-full justify-center items-center ">
     <ul class="flex flex-row w-full gap-1 self-center justify-center items-center h-full">
@@ -11,7 +11,7 @@
         <a href="{% url 'main:about' %}" class="text-sm rounded-full p-2 px-3 hover:bg-gray-200">About</a>
       </li>
       <li>
-        <a href="{% url 'main:about' %}" class="text-sm rounded-full p-2 px-3 hover:bg-gray-200">About</a>
+        <a href="{% url 'chat:messages' %}" class="text-sm rounded-full p-2 px-3 hover:bg-gray-200">Messages</a>
       </li>
       <li>
         <a href="{% url 'main:about' %}" class="text-sm rounded-full p-2 px-3 hover:bg-gray-200">About</a>
@@ -23,8 +23,9 @@
         </div>
       </li>
       {% if request.user.is_authenticated %}
-        <li>
-          <img src="{{userAvatar}}" alt="user avatar" class="h-[33px] rounded-full">
+        <li class="flex flex-row items-center px-2">
+          <img src="{{userAvatar}}" alt="user avatar" class="h-10 w-10 object-cover rounded-full">
+          <p>{{request.user.username}}</p>
         </li>
         <li>
           <a href="{% url 'accounts:logout' %}">
