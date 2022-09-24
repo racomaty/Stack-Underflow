@@ -4,18 +4,18 @@
     {% if contact %}
         <a href="{% url 'accounts:profile' contact %}" class="z-10 shadow-lg flex flex-row min-h-[60px] items-center">
             <div class="flex flex-row items-center mx-3 h-fit w-fit hover:bg-gray-200 hover:rounded-full">
-                <img src="{{contact.avatar}}" alt="avatar" class="w-10 h-10 object-cover rounded-full">
+                <img src="{{contact.avatar}}" alt="avatar" class="h-11 w-11 object-cover rounded-md">
                 <h3 class="text-xl text-slate-800 px-3">{{contact.username}}</h3>
             </div>
         </a>
         <hr>
-        <div class="flex flex-row h-full overflow-y-scroll">
+        <div class="flex flex-row min-h-full overflow-y-scroll">
             <ul class="w-full">
                 {% for message in messages %}
                 <li class="p-3">
                     <p class="text-xs text-slate-400">{{message.date}}</p>
                     <div class="flex flex-row items-center text-slate-800">
-                        <img src="{{message.sender.avatar}}" alt="avatar" class="w-10 h-10 object-cover rounded-full">
+                        <img src="{{message.sender.avatar}}" alt="avatar" class="h-8 w-8 object-cover rounded-md">
                         <p class="px-2 underline">{{message.sender}}:</p>
                         <div class="">{{message.message}}</div>
                     </div>
@@ -27,7 +27,7 @@
 
         <hr>
         
-        <form action="{% url 'chat:sendMessage' %}" method="post" class="flex flex-row z-10 shadow-lg">
+        <form action="{% url 'chat:sendMessage' %}" method="post" class="flex flex-row min-h-full z-10 shadow-lg">
             {% csrf_token %}
             <input type="text" name="message" id="message" placeholder="Write your message here" class="z-20 border border-indigo-500 focus:outline-indigo-500 px-6 w-full h-10">
             <input type="text" hidden placeholder="contact username" name="username" value="{{contact.username}}">

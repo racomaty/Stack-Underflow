@@ -1,13 +1,16 @@
 {% extends 'main/layout.html' %}
 
 {% block main %}
-<div class="flex flex-col items-center justify-center w-full min-h-full">
-    <div class="flex flex-row w-[70vw] h-[100%] divide-x border-x">
+<div class="flex flex-col items-center w-full min-h-full">
+    <div class="flex flex-row w-[70vw] min-h-[64vh] divide-x border-x">
         
         <!--- Aside -->
-        <div class="flex flex-col w-[15vw] h-[100%] ">
-            <div class="flex flex-row items-center justify-center z-10 shadow-lg">
-                <h2 class="p-4 text-xl text-slate-700">Contacts</h2>
+        <div class="flex flex-col w-[15vw] min-h-full ">
+            <div class="flex flex-row items-center justify-around z-10 shadow-lg">
+                <div class="flex items-center h-full"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 23v-2h16v2ZM4 3V1h16v2Zm8 10q1.25 0 2.125-.875T15 10q0-1.25-.875-2.125T12 7q-1.25 0-2.125.875T9 10q0 1.25.875 2.125T12 13Zm-8 7q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm1.75-2q1.125-1.4 2.725-2.2 1.6-.8 3.525-.8 1.925 0 3.525.8 1.6.8 2.725 2.2H20V6H4v12Zm2.95 0h6.6q-.725-.5-1.562-.75Q12.9 17 12 17t-1.737.25q-.838.25-1.563.75Zm3.3-7q-.425 0-.712-.288Q11 10.425 11 10t.288-.713Q11.575 9 12 9t.713.287Q13 9.575 13 10t-.287.712Q12.425 11 12 11Zm0 1Z"/></svg>
+                    <h2 class="p-4 text-xl text-slate-700">Contacts</h2>
+                </div> 
                 <a href="{% url 'chat:messages' %}" class="flex flex-col items-center">
                     <button class="rounded-full hover:bg-slate-200 self-center items-center"><svg xmlns="http://www.w3.org/2000/svg" class="self-center" fill="grey" height="24" width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z"/></svg></button>
                 </a>
@@ -17,7 +20,7 @@
                 {% for contact in contacts %}
                 <li>
                     <a href="{% url 'chat:chat' contact.username %}" class="flex flex-row items-center w-full h-full hover:bg-gray-200">
-                        <img src="{{contact.avatar}}" alt="contact avatar" class="w-10 h-10 object-cover rounded-full mx-4 my-2">
+                        <img src="{{contact.avatar}}" alt="contact avatar" class="h-8 w-8 object-cover rounded-md mx-4 my-2">
                         <p>{{ contact.username }}</p>
                     </a>
                 </li>
@@ -27,7 +30,7 @@
         </div>
 
         <!--- Main -->
-        <div class="flex flex-col w-[55vw] h-full">
+        <div class="flex flex-col w-[55vw] min-h-full">
             {% block chat %}
                 <div class="flex flex-col items-center justify-center w-full h-full">
                     <h3 class="text-xl p-4 text-slate-700 self-center">Start a new conversation</h3>

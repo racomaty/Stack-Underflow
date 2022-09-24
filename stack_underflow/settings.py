@@ -24,6 +24,9 @@ INSTALLED_APPS = [
     'main',
     'accounts',
     'chat',
+    'taggit',
+    'ckeditor',
+    'ckeditor_uploader',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -106,7 +109,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -129,3 +131,33 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
+
+PAGE_TAGGING = True
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_YourCustomToolbarConfig': [
+            {'items': ['Bold', 'Italic']},
+            {'items': ['Link','Blockquote', 'Image', 'SpecialChar', 'Iframe']},
+            {'name': 'document', 'items': ['Source']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList','HorizontalRule']},
+            {'name': 'clipboard', 'items': ['Undo', 'Redo']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
+        # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        'height': 300,
+        
+        'toolbarCanCollapse': True,
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+
+        ]),
+    }
+}
+
+TAGGIT_CASE_INSENSITIVE = True

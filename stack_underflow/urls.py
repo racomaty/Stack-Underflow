@@ -8,7 +8,8 @@ urlpatterns = [
     
     path('', include('main.urls')),
     path('accounts/', include('accounts.urls')),
-    path('messages/', include('chat.urls'))
+    path('messages/', include('chat.urls')),
+    path("ckeditor/", include('ckeditor_uploader.urls')),
 ]
 
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

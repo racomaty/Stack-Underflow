@@ -1,0 +1,36 @@
+{% extends './layout.html' %}
+
+{% block main %}
+<div class="flex flex-col self-center w-[50vw] border-x h-full">
+    <h1 class="text-2xl p-6 px-10 text-black">Ask a public question</h1>
+
+    <div class="min-w-full h-full flex flex-col items-center justify-center">
+        <form class="gap-10 items-center justify-center w-full px-10" action="{% url 'main:newPost' %}" method="post">
+            {% csrf_token %}
+            {{form.media}}
+            <div class="flex flex-col gap-4 w-full">
+                <div> 
+                    <p class="text-black text-xs">Be specific and imagine you’re asking a question to another person</p>
+                    <input required type="text" name="title" placeholder="Title"
+                        class="border w-full h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                </div>
+                <div>
+                    <p class="text-black text">Body</p>
+                    <p class="text-black text-xs">Include all the information someone would need to answer your question</p>
+                    {{form.description}}
+                </div>
+                <div>
+                    <p class="text-black text">Tags</p>
+                    <p class="text-black text-xs">Add tags to describe what your question is about</p>
+                    {{form.tags}}
+                </div>
+            </div>
+    
+            <div class="flex flex-row my-10 items-center gap-5 w-full">
+                <button type="submit"
+                    class="self-start px-3 py-2 font-semibold text-sm bg-sky-200 hover:bg-sky-300 text-sky-500 rounded-sm shadow-sm border border-sky-500">Public your question</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

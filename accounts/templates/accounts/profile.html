@@ -1,40 +1,40 @@
 {% extends 'main/layout.html' %}
 
 {% block main %}
-<div class="flex flex-col items-center w-full min-h-full">
-<div class="w-[50vw] h-full flex flex-col gap-4 border-x py-10">
-    <div class="flex flex-row min-w-full px-10">
-        <img src="{{user.avatar}}" alt="user avatar" class="rounded-md w-[8vw] h-[8vw] object-cover">
-        <div class="px-10 py-4 min-h-full min-w-fit flex flex-col place-content-between">
-            <p>Since {{user.date_joined}}</p>
-            <div>
-                <h2 class="text-3xl text-black">{{user.first_name|lower|title}} {{user.last_name|lower|title}}</h3>
-                <p class="text-black">@{{user.username}}</p>
+<div class="flex flex-col items-center w-full">
+    <div class="w-[50vw] h-[100%] flex flex-col gap-4 border-x py-10">
+        <div class="flex flex-row min-w-full px-10">
+            <img src="{{user.avatar}}" alt="user avatar" class="rounded-md w-[8vw] h-[8vw] object-cover">
+            <div class="px-10 py-4 min-h-full min-w-fit flex flex-col place-content-between">
+                <p>Since {{user.date_joined}}</p>
+                <div>
+                    <h2 class="text-3xl text-black">{{user.first_name|lower|title}} {{user.last_name|lower|title}}</h3>
+                    <p class="text-black">@{{user.username}}</p>
+                </div>
+                <p>Last login {{user.last_login}}</p>
             </div>
-            <p>Last login {{user.last_login}}</p>
+            {% if user != request.user %}
+            <div class="flex flex-row self-end w-full">
+                <a href="{% url 'chat:chat' user %}" class="">
+                    <button class="border border-blue-400 bg-blue-300 hover:bg-blue-400 text-white px-3 py-1 rounded-sm"><svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" width="24"><path d="M6 14h8v-2H6Zm0-3h12V9H6Zm0-3h12V6H6ZM2 22V4q0-.825.588-1.413Q3.175 2 4 2h16q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18H6Zm2-4.825L5.175 16H20V4H4ZM4 4v13.175Z"/></svg></button>
+                </a>
+            </div>
+            {% elif user == request.user %}
+            <div class="flex flex-col w-full justify-items-end">
+                <a href="{% url 'accounts:editProfile' %}" class="self-end">
+                    <button class="border-2 border-gray-400 px-3 py-1 rounded-md gap-1 flex text-sm items-center hover:shadow-xl hover:bg-gray-200 "><svg xmlns="http://www.w3.org/2000/svg" fill="gray" height="24" width="24"><path d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>Edit profile</button>
+                </a>
+            </div>
+            {% endif %}
         </div>
-        {% if user != request.user %}
-        <div class="flex flex-row self-end w-full">
-            <a href="{% url 'chat:chat' user %}" class="">
-                <button class="border-2 border-blue-400 bg-blue-300 text-white px-3 py-1 rounded-md"><svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" width="24"><path d="M6 14h8v-2H6Zm0-3h12V9H6Zm0-3h12V6H6ZM2 22V4q0-.825.588-1.413Q3.175 2 4 2h16q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18H6Zm2-4.825L5.175 16H20V4H4ZM4 4v13.175Z"/></svg></button>
-            </a>
+        <hr>
+        <div>
+            {{user.biography}}
         </div>
-        {% elif user == request.user %}
-        <div class="flex flex-col w-full justify-items-end">
-            <a href="{% url 'accounts:editProfile' %}" class="self-end">
-                <button class="border-2 border-gray-400 px-3 py-1 rounded-md gap-1 flex text-sm items-center hover:shadow-xl hover:bg-gray-200 "><svg xmlns="http://www.w3.org/2000/svg" fill="gray" height="24" width="24"><path d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>Edit profile</button>
-            </a>
+        <hr>
+        <div class="flex flex-col min-w-full px-10">
+            <h3 class="text-2xl text-black">Activity</h2>
         </div>
-        {% endif %}
     </div>
-    <hr>
-    <div>
-        {{user.biography}}
-    </div>
-    <hr>
-    <div class="flex flex-col min-w-full px-10">
-        <h3 class="text-2xl text-black">Activity</h2>
-    </div>
-</div>
 </div>
 {% endblock %}

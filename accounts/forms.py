@@ -1,10 +1,6 @@
-from cProfile import label
-from enum import unique
-from tkinter import Widget
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from django.core.exceptions import ValidationError
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True, label="E-Mail")

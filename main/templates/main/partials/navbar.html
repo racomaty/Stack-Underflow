@@ -5,7 +5,7 @@
   <div class="h-full justify-center items-center ">
     <ul class="flex flex-row w-full gap-1 self-center justify-center items-center h-full">
       <li class="hover:bg-gray-200 h-full">
-        <a href="{% url 'main:inicio' %}"><img class="h-[44px] px-3 py-1" src="{% static 'Stack_underflow.png' %}" alt=""></a>
+        <a href="{% url 'main:inicio' %}" class="h-full flex items-center"><img class="h-[44px] px-3 py-1" src="{% static 'Stack_underflow.png' %}" alt=""></a>
       </li>
       <li>
         <a href="{% url 'main:about' %}" class="text-sm rounded-full p-2 px-3 hover:bg-gray-200">About</a>
@@ -16,13 +16,13 @@
           <input type="input" class="absolute bg-transparent h-[33px] border gap-2 px-8 w-[40vw] border-slate-400 rounded-sm focus:outline-indigo-500 text-sm" placeholder="Search...">
         </div>
       </li>
-      <li>
-        <a href="{% url 'chat:messages' %}" class="text-sm rounded-full p-2 px-3 hover:bg-gray-200">Messages</a>
-      </li>
       {% if request.user.is_authenticated %}
+        <li>
+          <a href="{% url 'chat:messages' %}" class="text-sm rounded-full flex p-2 px-3 hover:bg-gray-200"><svg xmlns="http://www.w3.org/2000/svg" fill="gray" height="24" width="24"><path d="M6 14h8v-2H6Zm0-3h12V9H6Zm0-3h12V6H6ZM2 22V4q0-.825.588-1.413Q3.175 2 4 2h16q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18H6Zm2-4.825L5.175 16H20V4H4ZM4 4v13.175Z"/></svg></a>
+        </li>
         <li class="h-full m-1 self-center items-center hover:bg-gray-200">
           <a href="{% url 'accounts:profile' request.user %}" class="flex flex-row items-center mx-2 h-full">
-            <img src="{{userAvatar}}" alt="user avatar" class="h-10 w-10 object-cover rounded-full">
+            <img src="{{userAvatar}}" alt="user avatar" class="h-8 w-8 object-cover rounded-md">
             <p class="mx-2">{{request.user.username}}</p>
           </a>
         </li>
