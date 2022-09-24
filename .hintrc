@@ -17,6 +17,7 @@
       {
         "list": "off"
       }
-    ]
+    ],
+    "axe/forms": "off"
   }
 }

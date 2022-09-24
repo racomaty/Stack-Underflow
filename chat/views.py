@@ -5,12 +5,11 @@ import os
 from django.conf import settings
 from .models import *
 
-
-# Create your views here.
 @login_required
 def messages(request):
     return render(request, 'chat/messages.html', {'userAvatar': getAvatar(request.user), 'contacts': getContacts(request)})
 
+@login_required
 def newChat(request):
     if request.method == 'POST':
         try:
@@ -20,21 +19,23 @@ def newChat(request):
         except:
             return render(request, 'chat/messages.html', {'userAvatar': getAvatar(request.user), 'contacts': getContacts(request), 'error': 'User not found'})
 
+@login_required
 def chat(request, username):
     try:
         contact = User.objects.get(username=username)
         contact.avatar = getAvatar(contact)
         return render(request, 'chat/chat.html', {'userAvatar': getAvatar(request.user), 'contact': contact, 'messages': getContactMessages(request, contact), 'contacts': getContacts(request)})
     except:
-        return render(request, 'chat/chat.html', {'error': 'chat not found'})
+        return render(request, 'chat/chat.html', {'userAvatar': getAvatar(request.user), 'contacts': getContacts(request), 'error': 'User not found'})
 
+@login_required
 def sendMessage(request):
     if request.method == 'POST':
         message = Message.objects.create(sender=request.user, receiver=User.objects.get(username=request.POST['username']), message=request.POST['message'])
         message.save()
         return redirect('chat:chat', username=request.POST['username'])
-### Functions
 
+################### Functions
 def getContacts (request):
     if request.user.id:
         contacts = []

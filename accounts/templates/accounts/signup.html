@@ -1,14 +1,20 @@
 {% extends 'main/layout.html' %}
 
 {% block main %}
-<div class="flex flex-col items-center justify-center w-full min-h-[70%] py-32 px-16">
-    <form class="gap-10 items-center justify-center" action="{% url 'accounts:register' %}" method="post">
+<div class="flex self-center min-h-[100%]">
+    <form class="flex flex-col gap-4 items-center self-center justify-center max-h-fit" action="{% url 'accounts:signup' %}" method="post">
         {% csrf_token %}
 
-        <div class="flex flex-col gap-4 w-full items-center justify-center">
+        <div class="flex flex-col gap-4 min-w-full max-h-fit items-center justify-center">
             <input required type="name" name="username" placeholder="Username"
                 class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
             {{formErrors.username}}
+            <input required type="name" name="first_name" placeholder="Name"
+            class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+            {{formErrors.first_name}}
+            <input required type="name" name="last_name" placeholder="Last name"
+            class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+            {{formErrors.last_name}}
             <input required type="email" name="email" placeholder="E-mail"
                 class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
             {{formErrors.email}}
@@ -20,13 +26,12 @@
             {{formErrors.password2}}
         </div>
 
-        <div class="flex flex-row items-center justify-around m-10">
+        <div class="flex flex-row items-center justify-around m-2">
             <button type="submit"
                 class="self-center px-3 w-[75px] h-[33px] font-semibold text-sm bg-sky-200 hover:bg-sky-300 text-sky-600 rounded-sm shadow-sm border border-sky-500">Sign
                 up</button>
         </div>
-        <hr>
-        <div class="flex flex-row items-center justify-around m-5 gap-5">
+        <div class="flex flex-row items-center justify-around m-2 gap-5">
             <p>Ya eres miembro? </p>
             <a href="{% url 'accounts:login' %}" class="h-full">
                 <button type="button"

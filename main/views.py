@@ -11,12 +11,10 @@ def inicio(request):
 def about(request):
     return render(request,"main/about.html", {'userAvatar': getAvatar(request)})
 
-
 def getAvatar (request):
     if request.user.id:
         avList = Avatar.objects.all().filter(user=request.user.id)
         if len(avList) > 0:
-            print(avList[0].image.url)
             return avList[0].image.url
         else:
             return os.path.join(settings.MEDIA_URL, 'avatars/default.png')

@@ -2,38 +2,45 @@
 
 {% block chat %}
     {% if contact %}
-    <div class="flex flex-row items-center px-4 z-10 shadow-xl">
-        <img src="{{contact.avatar}}" alt="avatar" class="w-10 h-10 object-cover rounded-full">
-        <h3 class="text-xl p-4 text-slate-800">{{contact.username}}</h3>
-    </div>
-    <hr>
-    <div class="flex flex-row h-full overflow-y-scroll">
-        <ul class="w-full">
-            {% for message in messages %}
-            <li class="flex flex-col w-full p-3">
-                <p class="text-xs text-slate-400">{{message.date}}</p>
-                <div class="flex flex-row items-center w-full">
-                    <img src="{{message.sender.avatar}}" alt="avatar" class="w-10 h-10 object-cover rounded-full">
-                    <p class="px-2 text-slate-800">{{message.sender}}:</p>
-                    <p class="px-2 text-slate-800">{{message.message}}</p>
-                </div>
-            </li>
-            <hr>
-            {% endfor %}
-        </ul>
-    </div>  
+        <a href="{% url 'accounts:profile' contact %}" class="z-10 shadow-lg flex flex-row min-h-[60px] items-center">
+            <div class="flex flex-row items-center mx-3 h-fit w-fit hover:bg-gray-200 hover:rounded-full">
+                <img src="{{contact.avatar}}" alt="avatar" class="w-10 h-10 object-cover rounded-full">
+                <h3 class="text-xl text-slate-800 px-3">{{contact.username}}</h3>
+            </div>
+        </a>
+        <hr>
+        <div class="flex flex-row h-full overflow-y-scroll">
+            <ul class="w-full">
+                {% for message in messages %}
+                <li class="p-3">
+                    <p class="text-xs text-slate-400">{{message.date}}</p>
+                    <div class="flex flex-row items-center text-slate-800">
+                        <img src="{{message.sender.avatar}}" alt="avatar" class="w-10 h-10 object-cover rounded-full">
+                        <p class="px-2 underline">{{message.sender}}:</p>
+                        <div class="">{{message.message}}</div>
+                    </div>
+                </li>
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>  
 
-    <hr>
-    <div class="flex flex-col justify-self-end">
+        <hr>
+        
         <form action="{% url 'chat:sendMessage' %}" method="post" class="flex flex-row z-10 shadow-lg">
             {% csrf_token %}
             <input type="text" name="message" id="message" placeholder="Write your message here" class="z-20 border border-indigo-500 focus:outline-indigo-500 px-6 w-full h-10">
             <input type="text" hidden placeholder="contact username" name="username" value="{{contact.username}}">
             <button type="submit" class="w-[100px] h-10 bg-blue-500 text-white">Send</button>
         </form>
-    </div>
-    {% elif contact == None %}
-    <h3 class="text-xl p-4">{{error}}</h3>
-    {% endif %}
 
+    {% elif contact == None %}
+
+        <div class="flex flex-col justify-center h-full w-full items-center text-xl text-slate-800">
+            {{ error }}
+            <a href="{% url 'chat:messages' %}">
+                <button class="w-[80px] m-4 h-8 bg-blue-500 text-white text-sm">Go back</button>
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}

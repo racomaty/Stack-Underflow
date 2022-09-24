@@ -5,7 +5,7 @@ app_name = 'chat'
 
 urlpatterns = [
     path('', messages, name='messages'),
-    path('chat/', newChat, name='newChat'),
+    path('newChat/', newChat, name='newChat'),
     path('chat/<str:username>/', chat, name='chat'),
     path('sendMessage/', sendMessage, name='sendMessage'),
 ]

@@ -1,0 +1,35 @@
+{% extends 'main/layout.html' %}
+
+{% block main %}
+<div class="flex flex-row items-center justify-center w-full min-h-full">
+    <!--- Edit Data  -->
+    <form action="{% url 'accounts:editProfile' %}" enctype="multipart/form-data" method="post" class="flex flex-col gap-10 w-full min-h-fit">
+        {% csrf_token %}
+        <div class="flex flex-row gap-[10vw] w-full justify-center">
+            <div class="flex flex-col w-fit items-center gap-10">
+                <img src="{{user.avatar}}" alt="user avatar" class="rounded-md w-[14vw] h-[14vw] object-cover">
+                <input type="file" name="image" accept="image/*" id="id_imagen" class="bg-transparent text-sm">
+            </div>
+            <div class="flex flex-col gap-4 w-fit min-h-fit items-center justify-center text-black">
+                <input  type="name" name="first_name" placeholder="First name" value="{{ user.first_name }}"
+                    class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                <input  type="name" name="last_name" placeholder="Last name" value="{{ user.last_name }}"
+                    class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                <input type="email" name="email" placeholder="Email" value="{{ user.email }}"
+                    class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                <textarea type="text" rows="5" name="biography" placeholder="Biography" value="{{ user.biography }}"
+                    class="border w-[300px] border-slate-300 rounded-sm p-3 focus:outline-indigo-500"></textarea>
+                <input type="password" name="password1" placeholder="Password" value=""
+                    class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                <input type="password" name="password2" placeholder="Confirm password" value=""
+                    class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+            </div>
+        </div>
+
+        <button type="submit"
+            class="self-center px-3 w-[75px] h-[33px] font-semibold text-sm bg-sky-200 hover:bg-sky-300 text-sky-500 rounded-sm shadow-sm border border-sky-500">Save</button>
+
+    </form>
+</div>
+
+{% endblock %}
