@@ -8,6 +8,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('post/<int:id>', post, name='post'),
     path('post/new/', newPost, name='newPost'),
-    path('editPost/<int:id>', editPost, name='editPost'),
+    path('post/edit/<int:id>', editPost, name='editPost'),
+    path('post/delete/<int:id>', deletePost, name='deletePost'),
     path('post/tag/<str:name>', TagIndexView, name='tagged'),
 ]

@@ -11,9 +11,7 @@ def home(request):
     posts = Post.objects.all()
     for post in posts:
         post.author.avatar = getAvatar(post.author)
-    if request.user.id:
-        return render(request,"main/home.html", {'posts': posts, 'userAvatar': getAvatar(request.user)})
-    return render(request,"main/home.html")
+    return render(request,"main/home.html", {'posts': posts, 'userAvatar': getAvatar(request.user)})
 
 def about(request):
     return render(request,"main/about.html", {'userAvatar': getAvatar(request.user)})
@@ -27,6 +25,7 @@ def TagIndexView(request, name):
 
 def post(request, id):
     post = Post.objects.get(id=id)
+    post.author.avatar = getAvatar(post.author)
     return render(request,"main/post.html", {'post': post, 'userAvatar': getAvatar(request.user)})
 
 @login_required
@@ -47,20 +46,28 @@ def newPost(request):
 @login_required
 def editPost(request, id):
     post = Post.objects.get(id=id)
+    form = PostForm(request.POST or None, instance=post)
     if request.method == 'POST':
-        postForm = PostForm(request.POST)
-        if postForm.is_valid():
-            post.title = postForm.cleaned_data['title']
-            post.description = postForm.cleaned_data['description']
-            post.tags = postForm.cleaned_data['tags']
-            post.image = postForm.cleaned_data['image']
-            post.save()
-            return redirect('main:post/<int:id>', id)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = request.user
+            obj.save()
+            form.save_m2m()
+            return redirect('main:home')
         else:
-            return render(request, 'main/post.html', {'formErrors': postForm.errors, 'userAvatar': getAvatar(request.user)})
+            return render(request, 'main/editPost.html', { 'form': form, 'formErrors': form.errors, 'userAvatar': getAvatar(request.user)})
     else:
-        return render(request, 'main/post.html', {'post': post, 'userAvatar': getAvatar(request.user)})
+        return render(request, 'main/editPost.html', {'form': form, 'post': post, 'userAvatar': getAvatar(request.user)})
 
+@login_required
+def deletePost(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        if request.user == post.author:
+            post.delete()
+        return redirect('main:home')
+    else:
+        return render(request, 'main/deletePost.html', {'post':post,'userAvatar': getAvatar(request.user)})
 
 ################ Funciones
 def getAvatar(user):

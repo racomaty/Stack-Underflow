@@ -4,6 +4,8 @@ from accounts.models import *
 from chat.models import *
 
 ## import all models from all apps
+
+admin.site.register(Biography)
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
     list_display = ('author', 'text', 'date')

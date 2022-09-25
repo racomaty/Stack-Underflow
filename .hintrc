@@ -18,6 +18,7 @@
         "list": "off"
       }
     ],
-    "axe/forms": "off"
+    "axe/forms": "off",
+    "no-protocol-relative-urls": "off"
   }
 }

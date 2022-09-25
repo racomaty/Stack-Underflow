@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import *
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True, label="E-Mail")
@@ -19,12 +20,14 @@ class UserEditForm(UserCreationForm):
     password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput, required=False)
     first_name = forms.CharField(label='Modificar Nombre', required=False)
     last_name = forms.CharField(label='Modificar Apellido', required=False)
-    biography = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":20}), required=False)
-    
+
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2', 'first_name', 'last_name', 'biography')
+        fields = ('email', 'password1', 'password2', 'first_name', 'last_name')
         help_texts = {k:"" for k in fields}
 
 class AvatarForm(forms.Form):
     image = forms.ImageField(label="image", required=False)
+
+class BiographyForm(forms.Form):
+    biography = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":20}), required=False)

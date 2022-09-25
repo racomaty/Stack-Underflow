@@ -18,7 +18,9 @@
     <div class="flex flex-col py-3 px-6 max-h-[300px]">
         <div class="flex flex-col">
             <div class="flex flex-row justify-between">
-                <h2 class="text-lg text-blue-700 max-w-[80%]">{{ post.title }}</h2>
+                <a href="{% url 'main:post' post.id %}" class="w-[80%]">
+                    <h2 class="text-lg text-blue-700 max-w-[80%]">{{ post.title }}</h2>
+                </a>
                 <p class="text-sm text-gray-500 pt-1">{{ post.date }}</p>
             </div>
         </div>
@@ -43,6 +45,6 @@
         </div>
     </div>
     <hr>
-        {% endfor %}
+    {% endfor %}
 </div>
 {% endblock %}

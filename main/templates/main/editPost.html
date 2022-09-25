@@ -1,0 +1,44 @@
+{% extends './layout.html' %}
+
+{% block main %}
+<div class="flex flex-col self-center w-[50vw] border-x h-full">
+    <h1 class="text-2xl p-6 px-10 text-black">Edit</h1>
+
+    <div class="min-w-full h-full flex flex-col items-center justify-center">
+        <form class="gap-10 items-center justify-center w-full px-10" action="{% url 'main:editPost' post.id %}" method="post">
+            {% csrf_token %}
+            {{form.media}}
+            
+            <div class="flex flex-col gap-4 w-full">
+                <div> 
+                    <p class="text-black text-xs">Be specific and imagine you’re asking a question to another person</p>
+                    <input type="text" name="title" placeholder="Title" maxlength="200" value="{{post.title}}"
+                        class="border w-full h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                        {% if formErrors %}
+                            <p>{{formErrors.title}}</p>
+                        {% endif %}
+    
+                </div>
+                <div>
+                    <p class="text-black text">Body</p>
+                    <p class="text-black text-xs">Include all the information someone would need to answer your question</p>
+                    {{form.description}}
+                    {{formErrors.description}}
+                </div>
+                <div>
+                    <p class="text-black text">Tags</p>
+                    <p class="text-black text-xs">Add up to 5 tags to describe what your question is about.</p>
+                    {{form.tags}}
+                    <p class="text-black text-xs">Separated by ","</p>
+                    {{formErrors.tags}}
+                </div>
+            </div>
+    
+            <div class="flex flex-row my-10 items-center gap-5 w-full">
+                <button type="submit"
+                    class="self-start px-3 py-2 font-semibold text-sm bg-sky-200 hover:bg-sky-300 text-sky-500 rounded-sm shadow-sm border border-sky-500">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

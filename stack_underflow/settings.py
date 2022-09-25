@@ -138,21 +138,17 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar_YourCustomToolbarConfig': [
-            {'items': ['Bold', 'Italic']},
-            {'items': ['Link','Blockquote', 'CodeSnippet', 'Image', 'SpecialChar', 'Iframe']},
-            {'name': 'document', 'items': ['Source']},
-            {'name': 'paragraph',
-             'items': ['NumberedList', 'BulletedList','HorizontalRule']},
-            {'name': 'clipboard', 'items': ['Undo', 'Redo']},
-            '/',
-            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-        ],
-        'toolbar': 'YourCustomToolbarConfig',
+        'toolbar': 'Custom',
         'height': 300,
-        
-        'toolbarCanCollapse': True,
-        'tabSpaces': 4,
+        'toolbar_Custom': [
+            ['Bold', 'Italic'],
+            ['Link','Blockquote', 'CodeSnippet', 'Image', 'SpecialChar', 'Iframe'],
+            ['Source'],
+            ['NumberedList', 'BulletedList','HorizontalRule'],
+            ['Undo', 'Redo'],
+            '/',
+            ['Styles', 'Format', 'Font', 'FontSize'],
+        ],
         'extraPlugins': ','.join([
             'codesnippet',
             'uploadimage',
