@@ -11,6 +11,8 @@ def home(request):
     posts = Post.objects.all()
     for post in posts:
         post.author.avatar = getAvatar(post.author)
+    if(len(posts) == 0):
+        posts = None
     return render(request,"main/home.html", {'posts': posts, 'userAvatar': getAvatar(request.user)})
 
 def about(request):
@@ -191,4 +193,4 @@ def getAvatar(user):
         if len(avList) > 0:
             return avList[0].image.url
         else:
-            return os.path.join(settings.MEDIA_URL, 'avatars/default.jpeg')
+            return os.path.join(settings.MEDIA_URL, 'avatars/default.png')
