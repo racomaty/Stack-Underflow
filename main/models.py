@@ -17,12 +17,15 @@ class Post(models.Model):
 
 class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='AnswerAuthor')
-    text = RichTextUploadingField(blank=False, null=True)
+    body = RichTextUploadingField(blank=False, null=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='PostAnswer', null=True)
     date = models.DateTimeField(auto_now_add=True)
-
+    votes = models.IntegerField(default=0)
+    votesUp = models.ManyToManyField(User, related_name='AnswerVotesUp', blank=True)
+    votesDown = models.ManyToManyField(User, related_name='AnswerVotesDown', blank=True)
+    
     def __str__(self):
-        return self.message
-
+        return self.post.title
     class Meta:
-        ordering = ('-date',)
+        ordering = ('-votes',)
+

@@ -15,9 +15,9 @@ class PostForm(forms.ModelForm):
         tn = tn[:5]
         return tn
 
-class AnswerForm(forms.Form):
+class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = [
-            'text'
+            'body'
         ]

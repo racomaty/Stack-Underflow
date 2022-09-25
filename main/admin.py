@@ -8,9 +8,9 @@ from chat.models import *
 admin.site.register(Biography)
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('author', 'text', 'date')
+    list_display = ('author', 'body', 'date')
     list_filter = ('author', 'date')
-    search_fields = ('author', 'text')
+    search_fields = ('author', 'body')
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
