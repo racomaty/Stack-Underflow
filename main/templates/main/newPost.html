@@ -8,21 +8,29 @@
         <form class="gap-10 items-center justify-center w-full px-10" action="{% url 'main:newPost' %}" method="post">
             {% csrf_token %}
             {{form.media}}
+            
             <div class="flex flex-col gap-4 w-full">
                 <div> 
                     <p class="text-black text-xs">Be specific and imagine you’re asking a question to another person</p>
-                    <input required type="text" name="title" placeholder="Title"
+                    <input type="text" name="title" placeholder="Title" maxlength="200"
                         class="border w-full h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                        {% if formErrors %}
+                            <p>{{formErrors.title}}</p>
+                        {% endif %}
+    
                 </div>
                 <div>
                     <p class="text-black text">Body</p>
                     <p class="text-black text-xs">Include all the information someone would need to answer your question</p>
                     {{form.description}}
+                    {{formErrors.description}}
                 </div>
                 <div>
                     <p class="text-black text">Tags</p>
-                    <p class="text-black text-xs">Add tags to describe what your question is about</p>
+                    <p class="text-black text-xs">Add up to 5 tags to describe what your question is about.</p>
                     {{form.tags}}
+                    <p class="text-black text-xs">Separated by ","</p>
+                    {{formErrors.tags}}
                 </div>
             </div>
     

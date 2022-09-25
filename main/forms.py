@@ -1,5 +1,5 @@
 from django import forms
-from main.models import Post
+from main.models import *
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -7,9 +7,17 @@ class PostForm(forms.ModelForm):
         fields = [
             'title',
             'description',
-            'image',
             'tags',
         ]
+    
+    def clean_tags(self):
+        tn = self.cleaned_data.get('tags', [])
+        tn = tn[:5]
+        return tn
 
 class AnswerForm(forms.Form):
-    text = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":20}))
+    class Meta:
+        model = Answer
+        fields = [
+            'text'
+        ]

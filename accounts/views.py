@@ -3,8 +3,7 @@ from django.contrib.auth import login as auth_login, authenticate
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import Avatar
-import os
-from django.conf import settings
+from main.views import getAvatar
 from django.contrib.auth.decorators import login_required
 
 def login(request):
@@ -16,7 +15,7 @@ def login(request):
             user = authenticate(request, username = reqUser, password = reqPassword)
             if user is not None:
                 auth_login(request, user)
-                return redirect('main:inicio')
+                return redirect('main:home')
             else:
                 return render(request, 'accounts/login.html', {'formErrors': form.errors})
         else:
@@ -25,7 +24,7 @@ def login(request):
         form = AuthenticationForm()
         return render(request, 'accounts/login.html', {'formErrors': form.errors})
     else:
-        return redirect('main:inicio')
+        return redirect('main:home')
 
 def signup(request):
     if request.method == 'POST':
@@ -37,7 +36,7 @@ def signup(request):
             user = authenticate(request, username = reqUser, password = reqPassword)
             if user is not None:
                 auth_login(request, user)
-                return redirect('main:inicio')
+                return redirect('main:home')
             else:
                 form.errors.customError = 'Error al registrar user'
                 return render(request, 'accounts/signup.html', {'formErrors': form.errors.customError})
@@ -47,7 +46,7 @@ def signup(request):
         form = UserRegistrationForm()
         return render(request, 'accounts/signup.html')
     else:
-        return redirect('main:inicio')
+        return redirect('main:home')
 
 @login_required
 def profile(request, username):
@@ -82,13 +81,3 @@ def editProfile(request):
     else:
         userForm = UserEditForm()
     return render(request, 'accounts/editProfile.html', {'form':userForm, 'user':user, 'userAvatar': getAvatar(user)})
-
-##################### Funciones
-
-def getAvatar(user):
-    if user.id:
-        avList = Avatar.objects.all().filter(user = user.id)
-        if len(avList) > 0:
-            return avList[0].image.url
-        else:
-            return os.path.join(settings.MEDIA_URL, 'avatars/default.png')

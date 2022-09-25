@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from accounts.models import Avatar
-import os
-from django.conf import settings
 from .models import *
+from main.views import getAvatar
 
 @login_required
 def messages(request):
@@ -58,11 +57,3 @@ def getContactMessages (request, contact):
                 message.sender.username = 'You'
         messages = reversed(messages)
         return messages
-
-def getAvatar(user):
-    if user.id:
-        avList = Avatar.objects.all().filter(user=user.id)
-        if len(avList) > 0:
-            return avList[0].image.url
-        else:
-            return os.path.join(settings.MEDIA_URL, 'avatars/default.png')

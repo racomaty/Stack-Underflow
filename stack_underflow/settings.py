@@ -140,7 +140,7 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar_YourCustomToolbarConfig': [
             {'items': ['Bold', 'Italic']},
-            {'items': ['Link','Blockquote', 'Image', 'SpecialChar', 'Iframe']},
+            {'items': ['Link','Blockquote', 'CodeSnippet', 'Image', 'SpecialChar', 'Iframe']},
             {'name': 'document', 'items': ['Source']},
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList','HorizontalRule']},
@@ -149,13 +149,13 @@ CKEDITOR_CONFIGS = {
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
         ],
         'toolbar': 'YourCustomToolbarConfig',
-        # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
         'height': 300,
         
         'toolbarCanCollapse': True,
         'tabSpaces': 4,
         'extraPlugins': ','.join([
-
+            'codesnippet',
+            'uploadimage',
         ]),
     }
 }

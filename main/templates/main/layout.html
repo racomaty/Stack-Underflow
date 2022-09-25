@@ -9,19 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
-    <style>
-        body {
-            font-family: 'Ubuntu', sans-serif;
-            color: grey;
-        }
 
-        #id_tags {
-            width: 300px;
-            border: 1px solid #ccc;
-            padding: 2px;
-            border-radius: 2px;
-        }
-    </style>
 </head>
 
 <body class="min-h-[100vh] m-0 flex flex-col">
@@ -43,4 +31,23 @@
     {% include './partials/footer.html' %}
 </body>
 
+<style>
+    body {
+        font-family: 'Ubuntu', sans-serif;
+        color: grey;
+    }
+    #id_tags {
+        width: 300px;
+        border: 1px solid #ccc;
+        padding: 2px;
+        border-radius: 2px;
+    }
+    #id_tags:focus {
+        outline: none;
+    }
+    .errorlist {
+        color: red;
+        font-size: 14px;
+    }
+</style>
 </html>
