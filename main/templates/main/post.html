@@ -7,7 +7,7 @@
             <h1 class="text-2xl text-black">{{ post.title }}</h1>
             <p class="text-sm text-gray-500">Asked {{ post.date }}</p>
         </div>
-        {% if post.author == user %}
+        {% if post.author == request.user %}
         <div class="flex flex-row justify-end gap-2 h-fit pr-3">
             <a href="{% url 'main:editPost' post.id %}" class="self-end flex flex-row">
                 <button class="self-center items-center flex flex-row px-3 py-1 font-semibold text-sm hover:bg-sky-400 bg-sky-300 text-white rounded-sm shadow-sm border border-sky-500"><svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" width="24"><path d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>Edit</button>
@@ -72,16 +72,18 @@
                         <div class="flex flex-col w-full gap-1 text-black">
                             {{answer.body|safe}}
                         </div>
+                        {% if answer.author == request.user %}
                         <div class="flex flex-row gap-2">
                             <a href="{% url 'main:editAnswer' answer.id %}" class="">
                                 <button class="h-9 border border-gray-400 px-3 py-1 rounded-md gap-1 flex text-sm items-center hover:shadow-xl hover:bg-gray-200 "><svg xmlns="http://www.w3.org/2000/svg" fill="gray" height="24" width="24"><path d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>Edit</button></a>
                             <a href="{% url 'main:deleteAnswer' answer.id %}" class="h-full">
                                 <button class="h-9 border border-red-400 px-3 py-1 rounded-md gap-1 flex text-sm text-red-400 items-center hover:shadow-xl hover:bg-red-200">Delete</button></a>
                         </div>
+                        {% endif %}
                     </div>
                     <div class="flex flex-row w-full items-center pt-3 justify-between">
                         <p class="text-sm">{{answer.date}}</p>
-                        <a href="" class="flex flex-row gap-2 items-center">
+                        <a href="{% url 'accounts:profile' answer.author %}" class="flex flex-row gap-2 items-center">
                             <img src="{{answer.author.avatar}}" alt="" class="w-6 h-6 object-cover rounded-sm">
                             <p class="text-blue-600 text-sm hover:text-blue-400"> {{ answer.author }}</p>
                         </a>

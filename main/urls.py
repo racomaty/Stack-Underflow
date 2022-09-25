@@ -6,6 +6,7 @@ app_name = 'main'
 urlpatterns = [
     path('', home, name='home'),
     path('about/', about, name='about'),
+    path('post/search/', search, name='search'),
     path('post/<int:id>', post, name='post'),
     path('post/new/', newPost, name='newPost'),
     path('post/edit/<int:id>', editPost, name='editPost'),

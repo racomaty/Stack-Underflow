@@ -16,6 +16,24 @@ def home(request):
 def about(request):
     return render(request,"main/about.html", {'userAvatar': getAvatar(request.user)})
 
+def search(request):
+    if request.method == 'POST':
+        search = request.POST['search']
+        posts = Post.objects.all().filter(title__icontains=search)
+        if(len(posts) == 0):
+            posts = Post.objects.all().filter(description__icontains=search)
+        if(len(posts) == 0):
+            posts = Post.objects.all().filter(tags__name__icontains=search)
+        if(len(posts) == 0):
+            posts = Post.objects.all().filter(author__username__icontains=search)
+        for post in posts:
+            post.author.avatar = getAvatar(post.author)
+        if(len(posts) == 0):
+            posts = None
+        return render(request, 'main/home.html', {'posts': posts, 'search': search, 'userAvatar': getAvatar(request.user)})
+    else:
+        return redirect('main:home')
+
 def TagIndexView(request, name):
     tag = Tag.objects.get(name=name)
     posts = Post.objects.filter(tags=tag)
