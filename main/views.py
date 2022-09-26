@@ -53,7 +53,6 @@ def post(request, id):
         if answer.author == request.user:
             alreadyAnswered = True
     answerForm = AnswerForm()
-    print(alreadyAnswered)
     return render(request,"main/newAnswer.html", {'post': post, 'answerForm': answerForm,'user': request.user, 'alreadyAnswered': alreadyAnswered, 'answers': answers,'userAvatar': getAvatar(request.user)})
 
 @login_required
@@ -110,7 +109,7 @@ def newPost(request):
             obj.author = request.user
             obj.save()
             form.save_m2m()
-            return redirect('main:home')
+            return redirect('main:post', obj.id)
         else:
             return render(request, 'main/newPost.html', { 'form': form, 'formErrors': form.errors, 'userAvatar': getAvatar(request.user)})
     else:

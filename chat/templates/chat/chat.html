@@ -9,7 +9,7 @@
             </div>
         </a>
         <hr>
-        <div class="flex flex-row min-h-full overflow-y-scroll">
+        <div class="flex flex-row overflow-y-scroll min-h-[53vh]">
             <ul class="w-full">
                 {% for message in messages %}
                 <li class="p-3">
@@ -27,7 +27,7 @@
 
         <hr>
         
-        <form action="{% url 'chat:sendMessage' %}" method="post" class="flex flex-row min-h-full z-10 shadow-lg">
+        <form action="{% url 'chat:sendMessage' %}" method="post" class="mt-auto bottom-0 flex flex-row h-full z-10 shadow-lg">
             {% csrf_token %}
             <input type="text" name="message" id="message" placeholder="Write your message here" class="z-20 border border-indigo-500 focus:outline-indigo-500 px-6 w-full h-10">
             <input type="text" hidden placeholder="contact username" name="username" value="{{contact.username}}">

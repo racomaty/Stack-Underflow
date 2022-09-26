@@ -1,7 +1,7 @@
 {% extends 'main/layout.html' %}
 
 {% block main %}
-<div class="flex self-center min-h-[100%]">
+<div class="flex self-center min-h-[63vh]">
     <form class="flex flex-col gap-4 items-center self-center justify-center max-h-fit" action="{% url 'accounts:signup' %}" method="post">
         {% csrf_token %}
 
