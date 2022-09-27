@@ -19,10 +19,12 @@
                     class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
                 <textarea type="text" rows="5" name="biography" placeholder="Biography" value="{{ user.biography.biography }}"
                     class="border w-[300px] border-slate-300 rounded-sm p-3 focus:outline-indigo-500"></textarea>
+                    {{bioForm.errors}}
                 <input type="password" name="password1" placeholder="Password" value=""
                     class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
                 <input type="password" name="password2" placeholder="Confirm password" value=""
                     class="border w-[300px] h-[34px] border-slate-300 rounded-sm px-3 focus:outline-indigo-500">
+                    {{userForm.errors}}
             </div>
         </div>
 

@@ -2,8 +2,8 @@
 
 {% block answerForm %}
 
-    {% if post.author != user %}
-        {% if alreadyAnswered == False %}
+    {% if post.author != user or request.user.is_superuser %}
+        {% if alreadyAnswered == False or request.user.is_superuser %}
             <h2 class="text-xl text-black px-10 py-3">Your answer</h2>
             <form action="{% url 'main:newAnswer' post.id %}" method="post" class="pb-4 flex flex-col items-center w-full">
                 {% csrf_token %}

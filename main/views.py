@@ -15,6 +15,9 @@ def home(request):
         posts = None
     return render(request,"main/home.html", {'posts': posts, 'userAvatar': getAvatar(request.user)})
 
+def not_found(request, exception):
+    return render(request, 'main/404.html', {'userAvatar': getAvatar(request.user)})
+
 def about(request):
     return render(request,"main/about.html", {'userAvatar': getAvatar(request.user)})
 
@@ -36,7 +39,7 @@ def search(request):
     else:
         return redirect('main:home')
 
-def TagIndexView(request, name):
+def TagSearch(request, name):
     tag = Tag.objects.get(name=name)
     posts = Post.objects.filter(tags=tag)
     for post in posts:
@@ -122,7 +125,6 @@ def editPost(request, id):
     if request.method == 'POST':
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.author = request.user
             obj.save()
             form.save_m2m()
             return redirect('main:home')

@@ -8,15 +8,19 @@ from django.contrib.auth.decorators import login_required
 from main.models import Post
 
 def login(request):
+    next = request.GET.get('next')
     if request.method == 'POST':
         form = AuthenticationForm(data = request.POST)
         if form.is_valid():
             reqUser = form.cleaned_data.get('username')
             reqPassword = form.cleaned_data.get('password')
             user = authenticate(request, username = reqUser, password = reqPassword)
+
             if user is not None:
                 auth_login(request, user)
-                return redirect('main:home')
+                if next == None:
+                    return redirect('main:home')
+                return redirect(next)
             else:
                 return render(request, 'accounts/login.html', {'formErrors': form.errors})
         else:
@@ -69,9 +73,6 @@ def editProfile(request):
             user.first_name = userForm.cleaned_data["first_name"]
             user.last_name = userForm.cleaned_data["last_name"]
             user.email = userForm.cleaned_data["email"]
-            user.password1 = userForm.cleaned_data["password1"]
-            user.password2 = userForm.cleaned_data["password2"]
-            user.save()
             if avatarForm.cleaned_data["image"]:
                 avatarOld = Avatar.objects.all().filter(user = user)
                 if len(avatarOld) > 0:
@@ -82,13 +83,16 @@ def editProfile(request):
             if len(biographyOld) > 0:
                 biographyOld[0].delete()
             biography = Biography(user = user, biography = biographyForm.cleaned_data["biography"])
-            biography.save()
+            biography.save()            
+            user.save()
             return redirect('accounts:profile', username = user.username)
         else:
-            return render(request, 'accounts/editProfile.html', {'user': user, 'userForm': userForm, 'bioForm': biographyForm, 'avatarForm': avatarForm})
+            return render(request, 'accounts/editProfile.html', {'user': user, 'userAvatar': getAvatar(user), 'userForm': userForm, 'bioForm': biographyForm, 'avatarForm': avatarForm})
     else:
         userForm = UserEditForm()
-    return render(request, 'accounts/editProfile.html', {'form':userForm, 'user':user, 'userAvatar': getAvatar(user)})
+    return render(request, 'accounts/editProfile.html', {'form':userForm,  'user':user, 'userAvatar': getAvatar(user)})
+
+#################################
 
 def getBiography(user):
     if user.id:

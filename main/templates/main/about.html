@@ -1,42 +1,54 @@
 {% extends './layout.html' %}
+{% load static %}
 
 {% block main %}
-<div class="about flex flex-col items-center justify-center w-full min-h-[70%] py-32 px-16">
-    <div>
-        <div class="title">
-            <h1>About The Company</h1>
-        </div>
-        <div class="desc">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores modi vel blanditiis doloribus commodi
-                impedit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card">
-            <div class="card_img">
-                <i class="fas fa-rocket"></i>
+<div class="flex flex-col items-center justify-center w-full ">
+    <div class="flex flex-col  w-[50%] min-h-[64vh] border-x">
+        <h2 class="m-10 text-2xl">This is us</h2>
+        <div class="flex flex-row items-center justify-center w-full gap-[10%] ">
+            <div class="items-center flex flex-col">
+                <img src="{% static 'MatiasChavez.jpg' %}" alt="Matias Chavez" class="w-[10vw] aspect-square object-cover rounded-md shadow-2xl">
+                <h3 class="text-xl pt-3">Matías Chavez</h2>
+                <p></p>
+                <ul class="flex flex-col gap-1 pt-2">
+                    <li class="flex flex-row items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="m12.5 17-5-1.5-3.188 1.062q-.479.167-.895-.124Q3 16.146 3 15.604V5.229q0-.333.198-.594.198-.26.49-.364L7.5 3l5 1.5 3.188-1.062q.479-.209.895.104.417.312.417.854v10.375q0 .333-.188.604-.187.271-.5.354Zm-.75-1.792V5.833l-3.5-1.041v9.375Zm1.5-.041 2.25-.75V5.083l-2.25.75Zm-8.75-.25 2.25-.75V4.833l-2.25.75Zm8.75-9.084v9.334Zm-6.5-1v9.334Z"/></svg>
+                        Córdoba, Argentina.
+                    </li>
+                    <li class="flex flex-row items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M15.896 16.979q-2.563-.208-4.834-1.281-2.27-1.073-3.989-2.802-1.719-1.729-2.802-4T3 4.062q-.042-.437.26-.76T4 2.979h2.833q.355 0 .615.209.26.208.344.562l.5 2.229q.041.25-.021.5-.063.25-.25.438L6 8.958q.875 1.584 2.146 2.854Q9.417 13.083 11 13.958l2.062-2q.209-.208.459-.26.25-.052.479-.01l2.229.479q.354.083.563.354.208.271.208.625v2.833q0 .563-.396.792-.396.229-.708.208ZM5.312 7.5l1.459-1.458-.354-1.563H4.542q.104.792.291 1.542.188.75.479 1.479Zm7.167 7.167q.729.291 1.49.468.76.177 1.531.282v-1.875l-1.562-.334ZM5.312 7.5Zm7.167 7.167Z"/></svg>
+                        +54 9 351 642-0350
+                    </li>
+                    <li class="flex flex-row items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3.5 16q-.625 0-1.062-.438Q2 15.125 2 14.5v-9q0-.625.438-1.062Q2.875 4 3.5 4h13q.625 0 1.062.438Q18 4.875 18 5.5v9q0 .625-.438 1.062Q17.125 16 16.5 16Zm6.5-5L3.5 7.271V14.5h13V7.271Zm0-1.771L16.5 5.5h-13ZM3.5 7.271V5.5v9Z"/></svg>
+                        mtschvz@gmail.com
+                    </li>
+                    <li class="flex flex-row items-center justify-center">
+                        <a href="https://www.linkedin.com/in/matias-chavez-5a614b233/" rel="noopener" target="_blank" class="underline text-blue-600 hover:text-blue-300">LinkedIn</a>
+                    </li>
+                </ul>
             </div>
-            <div class="card_title">HTML</div>
-            <div class="card_body">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img">
-                <i class="fab fa-cloudversify"></i>
-            </div>
-            <div class="card_title">CSS</div>
-            <div class="card_body">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img">
-                <i class="fas fa-user-astronaut"></i>
-            </div>
-            <div class="card_title">JAVASCRIPT</div>
-            <div class="card_body">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+            <div class="items-center flex flex-col">
+                <img src="{% static 'MatiasPizzi.jpg' %}" alt="Matias Pizzi" class="w-[10vw] aspect-square object-cover rounded-md shadow-2xl">
+                <h3 class="text-xl pt-3">Matías Pizzi</h2>
+                <p></p>
+                <ul class="flex flex-col gap-1 pt-2">
+                    <li class="flex flex-row items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="m12.5 17-5-1.5-3.188 1.062q-.479.167-.895-.124Q3 16.146 3 15.604V5.229q0-.333.198-.594.198-.26.49-.364L7.5 3l5 1.5 3.188-1.062q.479-.209.895.104.417.312.417.854v10.375q0 .333-.188.604-.187.271-.5.354Zm-.75-1.792V5.833l-3.5-1.041v9.375Zm1.5-.041 2.25-.75V5.083l-2.25.75Zm-8.75-.25 2.25-.75V4.833l-2.25.75Zm8.75-9.084v9.334Zm-6.5-1v9.334Z"/></svg>
+                        Buenos Aires, Argentina.
+                    </li>
+                    <li class="flex flex-row items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M15.896 16.979q-2.563-.208-4.834-1.281-2.27-1.073-3.989-2.802-1.719-1.729-2.802-4T3 4.062q-.042-.437.26-.76T4 2.979h2.833q.355 0 .615.209.26.208.344.562l.5 2.229q.041.25-.021.5-.063.25-.25.438L6 8.958q.875 1.584 2.146 2.854Q9.417 13.083 11 13.958l2.062-2q.209-.208.459-.26.25-.052.479-.01l2.229.479q.354.083.563.354.208.271.208.625v2.833q0 .563-.396.792-.396.229-.708.208ZM5.312 7.5l1.459-1.458-.354-1.563H4.542q.104.792.291 1.542.188.75.479 1.479Zm7.167 7.167q.729.291 1.49.468.76.177 1.531.282v-1.875l-1.562-.334ZM5.312 7.5Zm7.167 7.167Z"/></svg>
+                        +54 9 11 5062-5822
+                    </li>
+                    <li class="flex flex-row items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3.5 16q-.625 0-1.062-.438Q2 15.125 2 14.5v-9q0-.625.438-1.062Q2.875 4 3.5 4h13q.625 0 1.062.438Q18 4.875 18 5.5v9q0 .625-.438 1.062Q17.125 16 16.5 16Zm6.5-5L3.5 7.271V14.5h13V7.271Zm0-1.771L16.5 5.5h-13ZM3.5 7.271V5.5v9Z"/></svg>
+                        matias@pizzi.com.ar
+                    </li>
+                    <li class="flex flex-row items-center justify-center">
+                        <a href="https://www.linkedin.com/in/matiasnahuelpizzi/" rel="noopener" target="_blank" class="underline text-blue-600 hover:text-blue-300">LinkedIn</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
