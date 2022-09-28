@@ -48,6 +48,8 @@ def TagSearch(request, name):
 
 def post(request, id):
     post = Post.objects.get(id=id)
+    if post == None:
+        return redirect('main:not_found')
     post.author.avatar = getAvatar(post.author)
     answers = Answer.objects.all().filter(post=post)
     alreadyAnswered = False
@@ -158,7 +160,7 @@ def editAnswer(request, id):
             obj = form.save(commit=False)
             obj.save()
             form.save_m2m()
-            return redirect('main:post', id)
+            return redirect('main:post', post.id)
         else:
             return render(request, 'main/editAnswer.html', { 'form': form, 'formErrors': form.errors,'answer': answer, 'userAvatar': getAvatar(request.user)})
     else:

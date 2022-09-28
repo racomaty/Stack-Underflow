@@ -15,7 +15,7 @@ Es necesario tener instalado Python previamente.
 
 ### 1- Clona este repositorio
 
-`git clone https://github.com/ron2452/Python-primer-entrega`
+`git clone https://github.com/matiaspizzi/Stack-Underflow`
 
 ### 2- Instala los requerimientos
 
