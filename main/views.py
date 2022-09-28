@@ -179,4 +179,4 @@ def getAvatar(user):
         if len(avList) > 0:
             return avList[0].image.url
         else:
-            return os.path.join(settings.MEDIA_URL, 'avatars/default.png')
+            return os.path.join(settings.MEDIA_URL, 'avatars/default.jpeg')

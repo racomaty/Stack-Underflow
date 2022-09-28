@@ -37,7 +37,7 @@
                     <form action="{% url 'chat:newChat' %}" method="post" class="p-4 self-center">
                         {% csrf_token %}
                         <input required type="text" name="contact" id="contact" placeholder="Username" class="focus:outline-indigo-500 px-6 w-50 h-10 border">
-                        <button type="submit" class="w-[100px] h-10 bg-blue-500 text-white">Start</button>
+                        <button type="submit" class="w-[100px] h-10 bg-blue-500 hover:bg-blue-400 text-white">Start</button>
                     </form>
                     
                     <p class="text-red-400">{{error}}</p>

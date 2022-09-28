@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='avatars/', default='avatars/default.jpg')
+    image = models.ImageField(upload_to='avatars/', default='avatars/default.jpeg')
 
 class Biography(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
