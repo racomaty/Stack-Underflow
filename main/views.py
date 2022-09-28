@@ -59,21 +59,6 @@ def post(request, id):
     return render(request,"main/newAnswer.html", {'post': post, 'answerForm': answerForm,'user': request.user, 'alreadyAnswered': alreadyAnswered, 'answers': answers,'userAvatar': getAvatar(request.user)})
 
 @login_required
-def newAnswer(request, id):
-    form = AnswerForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.author = request.user
-            obj.post = Post.objects.get(id)
-            obj.save()
-            return redirect('main:post', id)
-        else:
-            return render(request, 'main/newPost.html', { 'form': form, 'formErrors': form.errors, 'userAvatar': getAvatar(request.user)})
-    else:
-        return render(request, 'main/newPost.html', {'form': form, 'userAvatar': getAvatar(request.user)})
-
-@login_required
 def answerUpVote(request, id):
     answer = Answer.objects.get(id=id)
     if request.user in answer.votesUp.all():
@@ -127,7 +112,7 @@ def editPost(request, id):
             obj = form.save(commit=False)
             obj.save()
             form.save_m2m()
-            return redirect('main:home')
+            return redirect('main:post', obj.id)
         else:
             return render(request, 'main/editPost.html', { 'form': form, 'formErrors': form.errors, 'userAvatar': getAvatar(request.user)})
     else:
@@ -157,7 +142,7 @@ def newAnswer(request, id):
             obj.post = post
             obj.save()
             form.save_m2m()
-            return redirect('main:post', id=post.id)
+            return redirect('main:post', id)
         else:
             return render(request, 'main/newAnswer.html', { 'form': form, 'formErrors': form.errors, 'userAvatar': getAvatar(request.user)})
     else:
@@ -173,7 +158,7 @@ def editAnswer(request, id):
             obj = form.save(commit=False)
             obj.save()
             form.save_m2m()
-            return redirect('main:post', id=post.id)
+            return redirect('main:post', id)
         else:
             return render(request, 'main/editAnswer.html', { 'form': form, 'formErrors': form.errors,'answer': answer, 'userAvatar': getAvatar(request.user)})
     else:

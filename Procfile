@@ -1,1 +1,0 @@
-web: gunicorn stack_overflow.wsgi
