@@ -3,6 +3,8 @@
 
 # Stack Underflow - Curso Python - Entrega Final Coderhouse
 
+Video de prueba: <https://www.youtube.com/watch?v=E_s-mRAsok8>
+
 Este proyecto busca reproducir funcionalidades y estructuras de Stack Overflow utilizando Django.
 
 Realizado en conjunto con *Matias Chavez.*
