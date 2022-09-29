@@ -7,9 +7,9 @@ Video de prueba: <https://www.youtube.com/watch?v=E_s-mRAsok8>
 
 Este proyecto busca reproducir funcionalidades y estructuras de Stack Overflow utilizando Django.
 
-Realizado en conjunto con *Matias Chavez.*
+Realizado en conjunto con *Matias Pizzi.*
 
-Aunque no haya un registro de qué hizo cada uno, se puede decir que ambos hicimos de todo un poco. Mati Chavez se enfoco más que nada en desarrollo de las vistas y el CRUD, mientras que yo me enfoque en el desarrollo de los modelos, templates y en unificar las partes.
+Aunque no haya un registro de qué hizo cada uno, se puede decir que ambos hicimos de todo un poco. Matias Chavez se enfoco más que nada en desarrollo de las vistas y el CRUD, mientras que Matias Pizzi se enfocó en el desarrollo de los modelos, templates y en unificar las partes.
 
 ## *Instalación*
 
@@ -17,7 +17,7 @@ Es necesario tener instalado Python previamente.
 
 ### 1- Clona este repositorio
 
-`git clone https://github.com/matiaspizzi/Stack-Underflow`
+`git clone https://github.com/racomaty/Stack-Underflow`
 
 ### 2- Instala los requerimientos
 
